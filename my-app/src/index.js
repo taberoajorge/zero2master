@@ -1,13 +1,30 @@
-// Arreglos 
+// Funciones en JS
 
-const array = [1,2,3,4];
+const greeting = (name) => `Hola, ${name}`;
 
-let array2 = [...array, 5];
+console.log(greeting('Jorge'));
 
-const array3 = array2.map( (n)=> (
-  n*2
-));
+const userData = () => ({
+  id: 1,
+  username: 'taberoajorge',
+})
 
-console.log(array);
-console.log(array2);
-console.log(array3);
+console.log(userData());
+
+// function getUserActive(name) {
+//   return {
+//     uid: 'ABC567',
+//     username: name,
+//   }
+// };
+
+// const activeUser = getUserActive('Taberoa')
+// console.log(activeUser); 
+
+const getUserActive = (name) => ({
+  uid: 'ABC456',
+  username: name,
+})
+
+const activeUser = getUserActive('Jorge');
+console.log(activeUser);
