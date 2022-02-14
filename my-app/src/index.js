@@ -1,28 +1,13 @@
-const person = {
-  name: "Jorge",
-  lastname: "Taberoa",
-  age: 21,
-  address: {
-    city: 'El Tigre',
-    zp: 6060,
-    lat: -14.323,
-    lng: 34.124,
-  }
-};
+// Arreglos 
 
-// console.table(person);
-console.log(person);
+const array = [1,2,3,4];
 
-/* Esto no lo sabia, esa asignacion no es un 
-un objeto nuevo, es una referencia al objeto
-principal, por lo que si modifico person2
-Se va a modificar el valor de person*/
-const person2 = person;
-// person2.name = 'Chale';
+let array2 = [...array, 5];
 
-// Esto se evita creando un nuevo objeto y usando el spread operator
-const person3 = {...person};
-person3.name = 'Chale';
+const array3 = array2.map( (n)=> (
+  n*2
+));
 
-
-console.log(person3);
+console.log(array);
+console.log(array2);
+console.log(array3);
