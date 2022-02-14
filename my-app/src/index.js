@@ -1,30 +1,10 @@
-// Funciones en JS
+import {heroes} from "./data/heros";
 
-const greeting = (name) => `Hola, ${name}`;
+const heroe = (id) => {
+  return heroes.find((item) => id === item.id);
+};
 
-console.log(greeting('Jorge'));
+const moviesPerOwner = (owner) => heroes.filter((item)=> item.owner === owner)
 
-const userData = () => ({
-  id: 1,
-  username: 'taberoajorge',
-})
-
-console.log(userData());
-
-// function getUserActive(name) {
-//   return {
-//     uid: 'ABC567',
-//     username: name,
-//   }
-// };
-
-// const activeUser = getUserActive('Taberoa')
-// console.log(activeUser); 
-
-const getUserActive = (name) => ({
-  uid: 'ABC456',
-  username: name,
-})
-
-const activeUser = getUserActive('Jorge');
-console.log(activeUser);
+console.log(heroe(5));
+console.log(moviesPerOwner('DC'));
