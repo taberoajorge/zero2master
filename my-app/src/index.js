@@ -1,29 +1,18 @@
-import { heroe, moviesPerOwner } from './data/functions';
+const API_KEY = 'HlVw1DoiYmJA9VcI1HEPIS7ZxgCP1UtE';
+const API_URL = 'api.giphy.com/v1/random';
 
-// const promise = new Promise( (resolve, reject) => {
+const request = fetch(
+  `http://api.giphy.com/v1/gifs/random?api_key=${API_KEY}`
+);
 
-//   setTimeout(() => {
-//     const data = moviesPerOwner('DC');
-//     resolve(data)
-//   }, 3000);
+request
+  .then(resp => resp.json())
+  .then(({ data }) => { 
+    const { url } = data.images.original
 
-// });
+    const img = document.createElement('img')
+    img.src = url;
 
-// promise
-//   .then(data => console.log(data))
-
-const getHeroeByIdAsync = (id) => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      const data = heroe(id);
-      data
-        ? resolve(data)
-        : reject('No se encontro el heroe')
-
-    }, 3000);
-  });
-};
-
-getHeroeByIdAsync(2)
-  .then( console.log )
-  .catch( console.warn )
+    document.body.append( img )
+  })
+  .catch(console.warn)
