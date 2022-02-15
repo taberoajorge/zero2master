@@ -1,18 +1,18 @@
 const API_KEY = 'HlVw1DoiYmJA9VcI1HEPIS7ZxgCP1UtE';
-const API_URL = 'api.giphy.com/v1/random';
+const API_URL = 'http://api.giphy.com/v1/gifs/random';
 
-const request = fetch(
-  `http://api.giphy.com/v1/gifs/random?api_key=${API_KEY}`
-);
 
-request
-  .then(resp => resp.json())
-  .then(({ data }) => { 
-    const { url } = data.images.original
-
+const getImagen = async () => {
+  try {
+    const resp = await fetch(`${API_URL}?api_key=${API_KEY}`);
+    const { data } = await resp.json();
     const img = document.createElement('img')
-    img.src = url;
+    const resolve = data.images.original.url;
+    img.src = resolve;
+    document.body.append(img)
+  } catch (error) {
+    console.error(error);
+  }
+};
 
-    document.body.append( img )
-  })
-  .catch(console.warn)
+getImagen();
