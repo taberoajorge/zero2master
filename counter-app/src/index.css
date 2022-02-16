@@ -5,3 +5,10 @@ body {
     display: grid;
     place-content: center;
 }
+
+button{
+    border-radius: 2rem;
+    border: 1px solid white;
+    display: grid;
+    place-items: center;
+}
