@@ -5,7 +5,6 @@ describe('Pruebas 02-template-strings.js', () => {
   test('should return "hola name"', () => {
     const name = "Fernando";
     const greeting = getSaludo(name);
-    console.log(greeting);
     expect(greeting).toBe(`Hola ${name}`);
 
   })
@@ -14,7 +13,6 @@ describe('Pruebas 02-template-strings.js', () => {
 
   test('should "hola carlos"', () => {
     const greeting = getSaludo();
-    console.log(greeting);
     expect(greeting).toBe(`Hola Carlos`);
 
   })
