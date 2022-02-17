@@ -17,9 +17,11 @@ function CounterApp({ value }) {
     <>
       <h1>CounterApp</h1>
       <h2>{counter}</h2>
-      <button onClick={handleAdd}>+</button>
-      <button onClick={handleReset}>Reset</button>
-      <button onClick={handleSub}>-</button>
+      <div className="chale">
+        <button onClick={handleAdd}>+</button>
+        <button onClick={handleReset}>Reset</button>
+        <button onClick={handleSub}>-</button>
+      </div>
     </>
   )
 }
