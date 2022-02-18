@@ -1,6 +1,7 @@
 import React from 'react'
 import { Container, ListItemButton, ListItemText } from '@mui/material'
 import AddCategory from './AddCategory'
+import ImageContainer from './ImageContainer'
 
 function GifExpertApp() {
   const [categories, setCategories] = React.useState(['One punch', 'Samurai X', 'Dragon ball', 'Cosas happens'])
@@ -18,6 +19,7 @@ function GifExpertApp() {
           <ListItemText primary={item} />
         </ListItemButton>
       ))}
+      <ImageContainer categories={categories} />
     </Container>
 
   )

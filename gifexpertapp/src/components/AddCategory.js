@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button, TextField } from '@mui/material'
 import { Box } from '@mui/system';
+import PropTypes from 'prop-types';
 
 function AddCategory({ categories, setCategories }) {
   const form = React.useRef();
@@ -20,5 +21,10 @@ function AddCategory({ categories, setCategories }) {
     </Box>
   )
 }
+
+AddCategory.propTypes = {
+  categories: PropTypes.array.isRequired,
+  setCategories: PropTypes.func.isRequired,
+};
 
 export default AddCategory
