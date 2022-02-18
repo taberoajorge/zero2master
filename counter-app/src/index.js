@@ -4,4 +4,7 @@ import App from './App';
 import CounterApp from './CounterApp';
 import './index.css';
 
-ReactDOM.render(<CounterApp value={2} />, document.getElementById('root'));
+ReactDOM.render(
+  <App saludo={'holi'} other={1} />,
+  document.getElementById('root')
+);
