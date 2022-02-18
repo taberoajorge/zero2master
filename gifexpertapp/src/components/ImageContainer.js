@@ -11,14 +11,11 @@ const URL_API = 'http://api.giphy.com/v1/gifs/search';
 function ImageContainer({ searchTerm = "cats" }) {
   const [gifs, setGifs] = React.useState([]);
 
-  const getGifs = async () => {
+  React.useEffect(async () => {
     const resp = await fetch(`${URL_API}?api_key=${API_KEY}&q=${searchTerm}&limit=10`)
     const { data } = await resp.json();
-    // console.log(data);
     setGifs(data)
-  };
-
-  getGifs();
+  }, []);
 
 
 
