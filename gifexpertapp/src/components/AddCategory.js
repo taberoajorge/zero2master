@@ -1,30 +1,40 @@
-import React from 'react'
-import { Button, TextField } from '@mui/material'
-import { Box } from '@mui/system';
+import React, { useState } from 'react'
 import PropTypes from 'prop-types';
+import { FormControl, Input, TextField } from '@mui/material';
+import { Box } from '@mui/system';
 
-function AddCategory({ categories, setCategories }) {
-  const form = React.useRef();
-  const handleClick = () => {
-    const formData = new FormData(form.current);
-    const data = {
-      newCategories: formData.get('input'),
+export const AddCategory = ({ setCategories }) => {
+
+    const [inputValue, setInputValue] = useState(''); // ''
+
+    const handleInputChange = (e) => {
+        setInputValue(e.target.value);
     }
-    const { newCategories } = data;
-    setCategories([...categories, newCategories]);
-    form.current.reset()
-  };
-  return (
-    <Box ref={form} component={"form"} spacing={2}>
-      <TextField name='input' id="outlined-basic" label="Outlined" variant="outlined" />
-      <Button onClick={handleClick} variant="contained">Agregar</Button>
-    </Box>
-  )
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        if (inputValue.trim().length > 2) {
+            setCategories(cats => [inputValue, ...cats,]);
+            setInputValue('');
+        }
+
+    }
+
+    return (
+        <Box component="form" onSubmit={handleSubmit}>
+            <FormControl sx={{ width: '25ch' }}>
+                <Input
+                    type="text"
+                    value={inputValue}
+                    onChange={handleInputChange}
+                />
+            </FormControl>
+        </Box>
+    )
 }
 
-AddCategory.propTypes = {
-  categories: PropTypes.array.isRequired,
-  setCategories: PropTypes.func.isRequired,
-};
 
-export default AddCategory
+AddCategory.propTypes = {
+    setCategories: PropTypes.func.isRequired
+}

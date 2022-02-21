@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import GifExpertApp from './components/GifExpertApp';
-import { Container } from '@mui/material';
+import { GifExpertApp } from './GifExpertApp'
+
+
+
+import './index.css';
 
 ReactDOM.render(
-  <Container >
-    <GifExpertApp />
-  </Container>
-  ,
+  <GifExpertApp />,
   document.getElementById('root')
 );
 
