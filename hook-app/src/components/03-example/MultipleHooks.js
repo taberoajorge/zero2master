@@ -1,7 +1,7 @@
 import React from 'react'
 import useFetch from "../../hooks/useFetch";
 import {useCounter} from "../../hooks/useCounter";
-import { Button, Card, CardMedia, CardContent, CardActions, Typography } from '@mui/material'
+import { Button, Card, CardMedia, CardContent, CardActions, Typography, Grid, Container } from '@mui/material'
 
 function MultipleHooks() {
   const {state, increment, decrement, reset} = useCounter(1);
@@ -10,12 +10,13 @@ function MultipleHooks() {
   const {img, name} = !!data && data;
 
   return (
-    <>
+    <Container>
       {loading && <h1>Cargando</h1>}
       {!loading && (
-        <Card>
+
+        <Card sx={{ maxWidth: "500px"}}>
           <CardMedia
-            sx={{height: "60vh", objectFit: "contain"}}
+            sx={{height: "70vh",objectFit: "contain"}}
             component="img"
             image={img}
             alt={name}
@@ -34,8 +35,9 @@ function MultipleHooks() {
             </Button>
           </CardActions>
         </Card>
+
       )}
-    </>
+    </Container>
   );
 }
 
