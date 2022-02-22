@@ -1,47 +1,40 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect } from "react";
 import {
   AlertTitle,
   Box,
+  Button,
   FormGroup,
   FormLabel,
-  OutlinedInput,
+  Input,
 } from "@mui/material";
+import useForm from "../../hooks/useForm";
 
 function FormWithCustomHook() {
-  const [formState, setFormState] = useState({
+  const [formValues, handleOnChange] = useForm({
     name: "",
     email: "",
     password: ""
   });
 
-  const {name, email, password} = formState;
-
-  const handleOnChange = ({target}) => {
-    setFormState({
-      ...formState,
-      [target.name]: target.value
-    });
-  };
+  const {name, email, password} = formValues;
 
   useEffect(() => {
-    // console.log('Hey');
-  }, []);
+    console.log('email cambio');
 
-  useEffect(() => {
-    console.log('el form cambio');
-  }, [formState]);
-
-  useEffect(() => {
-    console.log('el email cambio');
-  }, [email]);
+  }, [email])
+  
+const handleSubmit = (e)=>{
+  e.preventDefault()
+  console.log(formValues);
+}
   
 
   return (
-    <Box component="form">
+    <Box component="form" onSubmit={handleSubmit}>
       <AlertTitle>FormWithCustomHook</AlertTitle>
       <FormGroup>
         <FormLabel>Name:</FormLabel>
-        <OutlinedInput
+        <Input
           name="name"
           value={name}
           onChange={handleOnChange}
@@ -49,7 +42,7 @@ function FormWithCustomHook() {
           autoComplete="off"
         />
         <FormLabel>Email:</FormLabel>
-        <OutlinedInput
+        <Input
           name="email"
           value={email}
           onChange={handleOnChange}
@@ -57,7 +50,7 @@ function FormWithCustomHook() {
           autoComplete="off"
         />
       <FormLabel>password:</FormLabel>
-        <OutlinedInput
+        <Input
           name="password"
           value={password}
           onChange={handleOnChange}
@@ -66,6 +59,7 @@ function FormWithCustomHook() {
           autoComplete="off"
         />
       </FormGroup>
+      <Button type="submit">Login</Button>
     </Box>
   );
 }
