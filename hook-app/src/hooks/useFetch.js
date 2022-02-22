@@ -8,7 +8,7 @@ function useFetch(url) {
 
   useEffect(() => {
 
-    setTimeout(()=>{
+ 
 
       getData(url)
         .then(data => setValue({
@@ -22,10 +22,10 @@ function useFetch(url) {
           error: error
           })
         })
-    }, 3000)
 
 
-  }, [])
+
+  }, [url])
 
   return value;
 }

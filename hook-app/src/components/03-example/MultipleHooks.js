@@ -1,19 +1,42 @@
 import React from 'react'
 import useFetch from "../../hooks/useFetch";
+import {useCounter} from "../../hooks/useCounter";
+import { Button, Card, CardMedia, CardContent, CardActions, Typography } from '@mui/material'
 
 function MultipleHooks() {
-  const { data, loading } = useFetch(`https://api.giphy.com/v1/gifs/search?q=hello&limit=10&api_key=A8xMXqzieIHmtO3BjGLAtf1daSSDAv8K`)
+  const {state, increment, decrement, reset} = useCounter(1);
+  const { data, loading } = useFetch(`https://www.breakingbadapi.com/api/characters/${state}`);
+
+  const {img, name} = !!data && data;
 
   return (
-    <ul>
+    <>
       {loading && <h1>Cargando</h1>}
-      {!loading && (data.map(({id, images: { original: {url} }, title})=>(
-        <li key={id} >
-          <img src={url} alt={title} />
-        </li>
-      )))}
-    </ul>
-  )
+      {!loading && (
+        <Card>
+          <CardMedia
+            sx={{height: "60vh", objectFit: "contain"}}
+            component="img"
+            image={img}
+            alt={name}
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+              {name}
+            </Typography>
+          </CardContent>
+          <CardActions>
+            <Button size="small" onClick={() => increment(1)}>
+              +
+            </Button>
+            <Button size="small" onClick={() => decrement(1)}>
+              -
+            </Button>
+          </CardActions>
+        </Card>
+      )}
+    </>
+  );
 }
 
 export default MultipleHooks
