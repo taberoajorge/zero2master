@@ -7,13 +7,14 @@ import {
   OutlinedInput,
 } from "@mui/material";
 
-function SimpleForm() {
+function FormWithCustomHook() {
   const [formState, setFormState] = useState({
     name: "",
     email: "",
+    password: ""
   });
 
-  const {name, email} = formState;
+  const {name, email, password} = formState;
 
   const handleOnChange = ({target}) => {
     setFormState({
@@ -37,7 +38,7 @@ function SimpleForm() {
 
   return (
     <Box component="form">
-      <AlertTitle>Simple Form</AlertTitle>
+      <AlertTitle>FormWithCustomHook</AlertTitle>
       <FormGroup>
         <FormLabel>Name:</FormLabel>
         <OutlinedInput
@@ -55,9 +56,18 @@ function SimpleForm() {
           id="email"
           autoComplete="off"
         />
+      <FormLabel>password:</FormLabel>
+        <OutlinedInput
+          name="password"
+          value={password}
+          onChange={handleOnChange}
+          placeholder="********"
+          id="password"
+          autoComplete="off"
+        />
       </FormGroup>
     </Box>
   );
 }
 
-export default SimpleForm;
+export default FormWithCustomHook;
