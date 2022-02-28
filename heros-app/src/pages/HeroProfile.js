@@ -1,15 +1,37 @@
-import {Card, CardHeader, CardMedia, Grid, CardContent, CardActions, Button} from "@mui/material";
-import React from "react";
-import {Link} from "react-router-dom";
+import React, {useCallback, useMemo} from "react";
+import {Navigate, useNavigate} from "react-router-dom";
 import {useParams} from "react-router-dom";
+import {
+  Card,
+  CardHeader,
+  CardMedia,
+  Grid,
+  CardContent,
+  CardActions,
+  Button,
+} from "@mui/material";
 import {getHeroById} from "../helpers/getHero";
 
 function HeroProfile() {
   const {heroe} = useParams();
+  const navigate = useNavigate();
 
-  const {id, superhero, publisher, alter_ego, first_appearance, characters} =
-    getHeroById(heroe);
+  const { id,
+          superhero,
+          publisher, 
+          alter_ego, 
+          first_appearance, 
+          characters} = useMemo(() => getHeroById(heroe), [heroe]);
+
   const imagePath = `/assets/${id}.jpg`;
+
+  const handleClick = useCallback(() => {
+    navigate(-1);
+  }, []);
+
+  if (!heroe) {
+    return <Navigate to="/heroes" />;
+  }
 
   return (
     <Card>
@@ -24,25 +46,22 @@ function HeroProfile() {
           />
         </Grid>
         <Grid item xs={12} sm={3}>
-        <CardContent>
-              <p>Publisher: {publisher}</p>
-              <p>Alter ego: {alter_ego}</p>
-              <p>First appearance: {first_appearance}</p>
-              {characters !== alter_ego && <p>Characters: {characters}</p>}
-            </CardContent>
-            <CardActions>
-              <Link
-                style={{ textDecoration: "none" }}
-                to={`/heroes/${publisher.toLowerCase().replace(/\s/g, "-")}/${id}`}
-              >
-              <Button
+          <CardContent>
+            <p>Publisher: {publisher}</p>
+            <p>Alter ego: {alter_ego}</p>
+            <p>First appearance: {first_appearance}</p>
+            {characters !== alter_ego && <p>Characters: {characters}</p>}
+          </CardContent>
+          <CardActions>
+            <Button
+              onClick={handleClick}
               variant="outlined"
               size="large"
-              color="primary">
-                 Back
-              </Button>
-                </Link>
-            </CardActions>
+              color="primary"
+            >
+              Back
+            </Button>
+          </CardActions>
         </Grid>
       </Grid>
     </Card>

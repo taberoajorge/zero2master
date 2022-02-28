@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import AppBar from "@mui/material/AppBar";
 import NavbarUI from "./NavbarUI";
 
-const pages = ["DC Comics", "Marvel Comics"];
+const pages = ["DC Comics", "Marvel Comics", "Search"];
 const settings = ["Logout"];
 
 const NavBar = ({publisher}) => {

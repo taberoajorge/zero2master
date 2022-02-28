@@ -89,7 +89,11 @@ function NavbarUI({
                   className={classes.linkMobile}
                   key={page}
                   onClick={handleCloseNavMenu}
-                  to={`/heroes/${page.toLowerCase().replace(/\s/g, "-")}`}
+                  to={
+                    page === "search"
+                      ? `/${page.toLowerCase()}`
+                      : `/heroes/${page.toLowerCase().replace(/\s/g, "-")}`
+                  }
                 >
                   {page}
                 </NavLink>
@@ -111,9 +115,12 @@ function NavbarUI({
             <NavLink
               key={page}
               onClick={handleCloseNavMenu}
-              to={`/heroes/${page.toLowerCase().replace(/\s/g, "-")}`}
+              to={
+                page === "search"
+                  ? `/${page.toLowerCase()}`
+                  : `/heroes/${page.toLowerCase().replace(/\s/g, "-")}`
+              }
               className={classes.link}
-
             >
               {page}
             </NavLink>
@@ -123,7 +130,7 @@ function NavbarUI({
         <Box sx={{flexGrow: 0}}>
           <Tooltip title="Open settings">
             <IconButton onClick={handleOpenUserMenu} sx={{p: 0}}>
-              <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+              <Avatar alt="J" />
             </IconButton>
           </Tooltip>
           <Menu
