@@ -1,15 +1,18 @@
-import React from "react";
+import React, {useContext} from "react";
 import {useNavigate} from "react-router-dom";
 import {createStyles, makeStyles} from "@mui/styles";
 import {
   Card,
   CardActions,
   CardHeader,
-  TextField, 
+  TextField,
   Button,
   CardContent,
 } from "@mui/material";
-import { Box } from "@mui/system";
+import {Box} from "@mui/system";
+import {AuthContext} from "../auth/authContext";
+import {types} from "../types/types";
+import useForm from "../hooks/useForm";
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -33,48 +36,65 @@ const useStyles = makeStyles(() =>
       display: "grid",
       gridTemplateColumns: "1fr",
       gridTemplateRows: "0.2fr",
-      
-      height: "70vh",
 
+      height: "70vh",
     },
   })
 );
 
 const Login = () => {
-  const classes = useStyles();
+  const {user, dispatch} = useContext(AuthContext);
 
+  const classes = useStyles();
   const navigate = useNavigate();
+  
+  const [values, handleOnChange] = useForm({
+    username: "",
+    password: "",
+  });
+
+  const {username, password} = values;
 
   const handleLogin = (e) => {
     e.preventDefault();
+    dispatch({
+      type: types.login,
+      payload: {username: username},
+    });
     navigate("/heroes", {
       replace: true,
     });
   };
 
-
-
   return (
-    <Box component={'form'} className={classes.container} noValidate autoComplete="off">
+    <Box
+      component={"form"}
+      className={classes.container}
+      noValidate
+      autoComplete="off"
+      onSubmit={handleLogin}
+    >
       <Card className={classes.card}>
         <CardHeader className={classes.header} title="Heros App" />
         <CardContent>
           <div>
             <TextField
               fullWidth
-              id="username"
+              name="username"
               type="email"
               label="Username"
               placeholder="Username"
               margin="normal"
+              onChange={handleOnChange}
             />
             <TextField
               fullWidth
-              id="password"
+              name="password"
               type="password"
               label="Password"
               placeholder="Password"
               margin="normal"
+              onChange={handleOnChange}
             />
           </div>
         </CardContent>

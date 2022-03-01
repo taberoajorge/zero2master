@@ -3,6 +3,7 @@ import AppBar from "@mui/material/AppBar";
 import NavbarUI from "./NavbarUI";
 import { useNavigate } from "react-router-dom";
 import {AuthContext} from "../../auth/authContext";
+import { types } from "../../types/types";
 
 const pages = ["DC Comics", "Marvel Comics", "Search"];
 const settings = ["Logout"];
@@ -10,7 +11,7 @@ const settings = ["Logout"];
 const NavBar = ({publisher}) => {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
-  const { user } = useContext(AuthContext);
+  const { user, dispatch } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleOpenNavMenu = (event) => {
@@ -31,6 +32,7 @@ const NavBar = ({publisher}) => {
 
   const handleLogout = (e) => {
     e.preventDefault();
+    dispatch({type: types.logout});
     navigate("/login", {
       replace: true,
     });
