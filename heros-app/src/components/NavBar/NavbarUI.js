@@ -1,5 +1,5 @@
 import React from "react";
-import {NavLink, useNavigate} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
@@ -12,6 +12,7 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 
 import {makeStyles} from "@mui/styles";
+import { Grid } from "@mui/material";
 
 const useStyles = makeStyles({
   link: {
@@ -19,6 +20,7 @@ const useStyles = makeStyles({
     my: 2,
     color: "white",
     display: "block",
+    marginLeft: "2rem",
   },
   linkMobile: {
     textDecoration: "none",
@@ -38,16 +40,12 @@ function NavbarUI({
   settings,
   handleCloseUserMenu,
   publisher,
+  handleLogout,
+  user
 }) {
-  const navigate = useNavigate();
   const classes = useStyles();
-
-  const handleLogout = (e) => {
-    e.preventDefault();
-    navigate("/login", {
-      replace: true,
-    });
-  };
+  
+  const {name} = user; 
 
   return (
     <Container maxWidth="xl">
@@ -109,10 +107,13 @@ function NavbarUI({
           sx={{flexGrow: 1, display: {xs: "flex", md: "none"}}}
         >
           {!publisher ? "Heroes App" : `${publisher.toUpperCase()}`}
+
         </Typography>
-        <Box sx={{flexGrow: 1, display: {xs: "none", md: "flex"}}}>
+        <Box sx={{
+          flexGrow: 1, display: {xs: "none", md: "flex"}}}>
           {pages.map((page) => (
             <NavLink
+
               key={page}
               onClick={handleCloseNavMenu}
               to={
@@ -127,7 +128,20 @@ function NavbarUI({
           ))}
         </Box>
 
-        <Box sx={{flexGrow: 0}}>
+        <Grid container sx={{flexGrow: 0, justifyContent: 'flex-end', width: '30%', alignItems: 'center'}} >
+          <Grid item sx={{marginRight: '1rem'}} >
+          
+          <Typography
+            variant="h6"
+            noWrap
+            component="div"
+            sx={{display: {xs: "flex", md: "none"}}}
+          >
+            {name}
+          </Typography>
+
+          </Grid>
+          <Grid item >
           <Tooltip title="Open settings">
             <IconButton onClick={handleOpenUserMenu} sx={{p: 0}}>
               <Avatar alt="J" />
@@ -160,7 +174,9 @@ function NavbarUI({
               </MenuItem>
             ))}
           </Menu>
-        </Box>
+            
+          </Grid>
+        </Grid>
       </Toolbar>
     </Container>
   );
