@@ -9,14 +9,14 @@ import {
   CardContent,
   Typography,
 } from "@mui/material";
-import GoogleButton from 'react-google-button'
+import GoogleButton from "react-google-button";
 import {Link, useNavigate} from "react-router-dom";
 
 const useStyles = makeStyles({
   card: {
     width: "100%",
     maxWidth: "400px",
-    height: "70%",
+    height: "75%",
     margin: "auto",
   },
   container: {
@@ -24,7 +24,7 @@ const useStyles = makeStyles({
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "space-around",
-    height: "35%",
+    height: "45%",
   },
   loginBtn: {
     flexGrow: 1,
@@ -42,7 +42,6 @@ const useStyles = makeStyles({
     alignItems: "center",
   },
 });
-
 
 const SessionForm = ({type}) => {
   const classes = useStyles();
@@ -65,6 +64,15 @@ const SessionForm = ({type}) => {
         {type}
       </Typography>
       <CardContent className={classes.container}>
+        {type === 'Create Account' && (<TextField
+          fullWidth
+          name="name"
+          type="text"
+          label="name"
+          placeholder="name"
+          margin="normal"
+          disabled={type !== 'Create Account'}
+        />)}
         <TextField
           fullWidth
           name="username"
@@ -81,7 +89,6 @@ const SessionForm = ({type}) => {
           placeholder="Password"
           margin="normal"
           sx={{m: 1}}
-
         />
       </CardContent>
 
@@ -95,8 +102,11 @@ const SessionForm = ({type}) => {
         >
           {type !== "Login" ? "Sign Up" : "Sign In"}
         </Button>
-       <GoogleButton className={classes.loginBtn}  />
-        <Link  className={classes.loginBtn} to={type !== "Login" ? "auth/login" : "auth/register"}>
+        <GoogleButton className={classes.loginBtn} />
+        <Link
+          className={classes.loginBtn}
+          to={type !== "Login" ? "auth/login" : "auth/register"}
+        >
           {type !== "Login"
             ? "Already                                                                                                            have an account?"
             : "Don't have an account?"}
