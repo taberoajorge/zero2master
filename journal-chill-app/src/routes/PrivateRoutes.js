@@ -1,14 +1,7 @@
 // PrivateRoutes.js
 
-import React from 'react'
-import {Route, Routes} from 'react-router-dom';
-
-function PrivateRoutes() {
-  return (
-    <Routes>
-
-    </Routes>
-  )
+function PrivateRoutes({children}) {
+  return children;
 }
 
-export default PrivateRoutes
+export default PrivateRoutes;

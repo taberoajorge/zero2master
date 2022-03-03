@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import SessionForm from './components/SessionForm';
+import App from './routes/app';
 
 ReactDOM.render(
-    <SessionForm />,
+    <App />,
   document.getElementById('root')
 );
 

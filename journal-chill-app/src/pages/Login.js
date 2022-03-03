@@ -1,9 +1,11 @@
-import React from 'react'
+import React from "react";
+import SessionForm from "../components/SessionForm";
 
-function Login() {
-  return (
-    <div>Login</div>
-  )
-}
 
-export default Login
+
+const Login = () => {
+
+  return <SessionForm type='Login' />;
+};
+
+export default Login;
