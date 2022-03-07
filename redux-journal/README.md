@@ -1,0 +1,1 @@
+  pnpm install @babel/plugin-syntax-flow && pnpm install @babel/plugin-transform-react-jsx && pnpm install @testing-library/dom && pnpm install autoprefixer && pnpm install typescript 

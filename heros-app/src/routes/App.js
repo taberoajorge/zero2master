@@ -37,11 +37,7 @@ function App() {
             path="/login"
             element={
               <PublicRoute>
-                {/* <Routes> */}
-                  {/* <Route exact path="/login" element={<Login />} /> */}
                   <Login />
-                  {/* <Route exact path="/register" element={<RegisterAccount />} /> */}
-                {/* </Routes> */}
               </PublicRoute>
             }
           />
